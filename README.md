@@ -76,15 +76,15 @@ Nirgrantha runs a coordinated multi-agent pipeline of 7 specialized sub-agents:
 
 ---
 
-## 🔑 Configured API Keys & Integrations
+## 🔑 Configured API Keys & Environment Variables
 
-> **Security Note:** Real API keys are stored strictly in `.env` (which is `.gitignore` protected and never committed). Only variable names are documented here:
+> **Security Note:** Real secret keys are stored strictly in `.env` (which is `.gitignore` protected and never committed). Nirgrantha is packaged as **1 single unified application** — you only deploy 1 app, and you only need **1 API key** (`GEMINI_API_KEY`) for full AI functionality:
 
-| Environment Variable | Provider / Platform | Purpose & Live Usage |
-| :--- | :--- | :--- |
-| **`GEMINI_API_KEY`** | **Google Gemini 2.5 / 1.5 Flash** | Powers the floating **Nirgrantha AI Copilot (`✨`)** in the bottom-right corner. It injects full real-time context of the in-force memory ledger, pending contradictions, and held reminders so users or judges can ask doubts about meeting decisions, blast radius calculations, or agent governance in natural language. |
-| **`WEBHOOK_URL`** | **Slack Incoming Webhook** | Connects Nirgrantha directly to your team's Slack channel (`#all-arihant`). When the Governance Gate confirms decisions, it dispatches live Markdown receipts containing rewritten tasks, superseded deadlines, and held reminder alerts. (Also compatible with **n8n / Zapier**). |
-| **`NEXT_PUBLIC_GOOGLE_CLIENT_ID`** *(Architecture / Ready)* | **Google Identity Services (OAuth 2.0)** | Enables Google Workspace account authentication in **Profile & Settings** to integrate Google Calendar meeting sync and Google Meet transcript ingestion with the user profile (*Arihant Mahajan*). |
+| Environment Variable | Required? | Provider / Platform | Purpose & Live Usage |
+| :--- | :---: | :--- | :--- |
+| **`GEMINI_API_KEY`** | **Recommended** *(Only 1 key)* | **Google Gemini 2.5 / 1.5 Flash** | Powers the floating **Nirgrantha AI Copilot (`✨`)** in the bottom-right corner and the hybrid agent reasoning engine. Injects the active in-force memory ledger, pending contradictions, and held reminders so users or judges can ask doubts about meeting decisions, blast radius calculations, or agent governance in natural language. |
+| **`WEBHOOK_URL`** | *Optional* | **Slack Incoming Webhook** | Connects Nirgrantha directly to your team's Slack channel (`#all-arihant`). When the Governance Gate confirms decisions, it dispatches live Markdown receipts containing rewritten tasks, superseded deadlines, and held reminder alerts. *(Can also be entered or updated anytime directly inside the app's **Profile & Settings** UI!)* |
+| **`NEXT_PUBLIC_GOOGLE_CLIENT_ID`** | *Optional* | **Google Identity Services (OAuth 2.0)** | Enables real Google Workspace account authentication in **Profile & Settings** to integrate Google Calendar meeting sync and Google Meet transcript ingestion with your user profile (*Arihant Mahajan*). |
 
 ---
 
@@ -92,8 +92,9 @@ Nirgrantha runs a coordinated multi-agent pipeline of 7 specialized sub-agents:
 
 - **Frontend & App Shell:** Next.js 15 (App Router), React 19, TypeScript 5.8
 - **Styling & Layout:** Tailwind CSS 3.4
-  - **Fixed App Shell:** Viewport-locked layout (`h-screen overflow-hidden`) with a permanent **Fixed Header** (brand, profile, agent cockpit) and **Fixed Footer** (system telemetry, memory in force, safety brake status).
-  - **Independently Scrollable Center:** Only the workspace content area scrolls.
+  - **Fixed App Shell:** Viewport-locked layout (`h-screen overflow-hidden`) with a permanent **Pure White Header** (`bg-white` 2-tier command deck with live 7-agent pipeline status), a **Pure White Footer** (`bg-white` system telemetry and safety brake indicator), and a warm **`bg-paper`** center workspace.
+  - **Independently Scrollable Center:** Only the active workspace content area scrolls.
+  - **Custom Scrollbar Engine:** Dedicated smooth rounded pill scrollbar (`.terms-scrollbar`) matching the warm editorial palette.
   - **Editorial Palette:** `paper` (`#f6f1e8`), `ink` (`#1c1612`), `brass` (`#8d5e12`), `coral` (`#c2412d`), `sage` (`#1c7a4a`).
 - **AI & NLP Engine:** Google Gemini 2.5 & 1.5 Flash via direct Google REST API (zero bloated dependencies) with an offline heuristic fallback engine for 100% demo uptime.
 - **Audio & Native Web APIs:** Web Speech API (`SpeechRecognition` / `webkitSpeechRecognition`) supporting live voice dictation with Indian English (`en-IN`) acoustic models.
@@ -108,7 +109,7 @@ Nirgrantha runs a coordinated multi-agent pipeline of 7 specialized sub-agents:
 ### 1. Welcome Page & Gate Agreement
 - Editorial hero section explaining meeting amnesia.
 - 4 real-time metrics, 6 architectural capability cards, and a horizontal 7-step pipeline.
-- Collapsible Terms & Conditions accordion requiring user agreement before unlocking the platform.
+- **Scrollable Terms & Conditions Box**: A custom-styled, recessed scrollable container with 8 comprehensive clauses covering Human Governance, Local Privacy, Cross-Meeting Memory, and Safety Brakes. Requires user agreement before entering.
 
 ### 2. The In-Force Room (`🏛️`)
 - Displays the active historical ledger locked on Nov 3 (Launch: 28 Nov, Budget: ₹5L, Database: Postgres).
@@ -138,29 +139,29 @@ Nirgrantha runs a coordinated multi-agent pipeline of 7 specialized sub-agents:
 ### 9. Profile & Settings (`⚙️`)
 - Shows authenticated Google profile (**Arihant Mahajan · Google Workspace Connected**).
 - Toggles for Google Meet transcripts, Google Calendar sync, and Google Drive backup.
-- Live Slack Webhook configuration with connection testing.
+- Live Slack Webhook configuration with connection testing and instant verification.
 
 ### 10. Gemini AI Copilot (`✨`)
-- Floating assistant in the bottom-right corner powered by Gemini 2.5 Flash. Context-aware doubt solver for decisions, contradictions, and system architecture.
+- Floating luminous warm-amber assistant in the bottom-right corner powered by Gemini 2.5 Flash. Context-aware doubt solver for decisions, contradictions, blast radius calculations, and system architecture.
 
 ---
 
 ## 🚀 Where & How We Deploy
 
-### Deploying to Vercel (Recommended)
+### Deploying to Vercel (1 Single Unified App)
 
-Nirgrantha is engineered to be 100% cloud-ready with zero serverless filesystem crashes:
+Nirgrantha is packaged as **1 single unified application** containing the frontend UI, 7-subagent autonomous engine, Gemini API route (`/api/chat`), and state store. You only need to deploy **1 app** to **1 place** with **zero serverless filesystem crashes**:
 
-1. Push your repository to GitHub.
-2. Go to [Vercel](https://vercel.com/) and click **Add New Project** ➔ Import your repository.
-3. In **Environment Variables**, add:
+1. Push your repository to GitHub: `https://github.com/arihantmahajan585m/AGENTIC-AI.git`.
+2. Go to [Vercel](https://vercel.com/) and click **Add New Project** ➔ Import `AGENTIC-AI`.
+3. In **Environment Variables**, you only need to add:
    - `GEMINI_API_KEY` = *your Google Gemini API key*
-   - `WEBHOOK_URL` = *your Slack webhook URL*
+   *(Optional: `WEBHOOK_URL` if you want Slack pre-configured, or paste it inside the in-app Settings anytime)*.
 4. Click **Deploy**.
 5. **How Storage Works on Vercel:** Nirgrantha automatically detects `VERCEL=1` and writes mutable state to `/tmp/kept-store.json` with an in-memory fallback. This completely eliminates the `EROFS: read-only file system` crash that plagues standard Node apps on Vercel serverless functions!
 
-### Deploying to AWS Lambda / Netlify / Render
-The state engine in `lib/store.ts` also natively detects `AWS_LAMBDA_FUNCTION_NAME` and `NETLIFY`, ensuring seamless zero-config deployment across any cloud provider.
+### Deploying to Netlify / Render / AWS Lambda
+The state engine in `lib/store.ts` also natively detects `AWS_LAMBDA_FUNCTION_NAME`, `NETLIFY`, and `RENDER`, ensuring seamless zero-config deployment across any cloud provider.
 
 ---
 
