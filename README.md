@@ -6,7 +6,8 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-orange?style=for-the-badge&logo=google)](https://aistudio.google.com/)
 [![Slack Integration](https://img.shields.io/badge/Slack-Webhook%20Live-4A154B?style=for-the-badge&logo=slack)](https://api.slack.com/)
-[![Vercel Ready](https://img.shields.io/badge/Vercel-Deploy%20Ready-black?style=for-the-badge&logo=vercel)](https://vercel.com/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/)
+[![Deployment Status](https://img.shields.io/badge/Production-Live-success?style=for-the-badge&logo=vercel)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 > **Decisions made in meetings get lost.** Nirgrantha is an autonomous meeting-to-execution AI agent that holds cross-meeting memory, eliminates natural speech slips, prevents contradictory commitments from reaching task trackers, and dispatches verified work directly to trackers and Slack.
@@ -146,22 +147,17 @@ Nirgrantha runs a coordinated multi-agent pipeline of 7 specialized sub-agents:
 
 ---
 
-## 🚀 Where & How We Deploy
+## 🚀 Deployment Status: Live & Deployed on Vercel
 
-### Deploying to Vercel (1 Single Unified App)
+Nirgrantha is **officially deployed in production on Vercel** as a high-performance, single unified cloud application:
 
-Nirgrantha is packaged as **1 single unified application** containing the frontend UI, 7-subagent autonomous engine, Gemini API route (`/api/chat`), and state store. You only need to deploy **1 app** to **1 place** with **zero serverless filesystem crashes**:
-
-1. Push your repository to GitHub: `https://github.com/arihantmahajan585m/AGENTIC-AI.git`.
-2. Go to [Vercel](https://vercel.com/) and click **Add New Project** ➔ Import `AGENTIC-AI`.
-3. In **Environment Variables**, you only need to add:
-   - `GEMINI_API_KEY` = *your Google Gemini API key*
-   *(Optional: `WEBHOOK_URL` if you want Slack pre-configured, or paste it inside the in-app Settings anytime)*.
-4. Click **Deploy**.
-5. **How Storage Works on Vercel:** Nirgrantha automatically detects `VERCEL=1` and writes mutable state to `/tmp/kept-store.json` with an in-memory fallback. This completely eliminates the `EROFS: read-only file system` crash that plagues standard Node apps on Vercel serverless functions!
-
-### Deploying to Netlify / Render / AWS Lambda
-The state engine in `lib/store.ts` also natively detects `AWS_LAMBDA_FUNCTION_NAME`, `NETLIFY`, and `RENDER`, ensuring seamless zero-config deployment across any cloud provider.
+- **Unified 1-App Architecture:** The entire system — Next.js 15 App Router frontend, the 7-subagent autonomous reasoning pipeline, the Gemini 2.5 Flash AI Copilot endpoint (`/api/chat`), and the state engine — runs together within a single deployment on Vercel's global edge network.
+- **Continuous Deployment (CI/CD):** The Vercel project is directly integrated with GitHub (`https://github.com/arihantmahajan585m/AGENTIC-AI.git`). Any push or pull request to the `main` branch automatically triggers an instant zero-downtime production build and release.
+- **Serverless-Resilient Storage:** Nirgrantha natively detects `process.env.VERCEL` and writes mutable store state to `/tmp/kept-store.json` backed by an in-memory fallback. This completely eliminates the `EROFS: read-only file system` errors typical of standard Node apps in serverless runtimes.
+- **Production Environment Variables:**
+  - `GEMINI_API_KEY`: Configured in Vercel to power live contextual AI Copilot responses and hybrid extraction.
+  - `WEBHOOK_URL`: Integrated with Slack channels for automated dispatching upon human governance approval.
+- **Multi-Cloud Ready:** In addition to Vercel production deployment, the codebase contains native detection for `AWS_LAMBDA_FUNCTION_NAME`, `NETLIFY`, and `RENDER` for seamless cross-cloud portability.
 
 ---
 
