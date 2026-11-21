@@ -6,8 +6,8 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-orange?style=for-the-badge&logo=google)](https://aistudio.google.com/)
 [![Slack Integration](https://img.shields.io/badge/Slack-Webhook%20Live-4A154B?style=for-the-badge&logo=slack)](https://api.slack.com/)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/)
-[![Deployment Status](https://img.shields.io/badge/Production-Live-success?style=for-the-badge&logo=vercel)](https://vercel.com/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://agentic-ai-inky-gamma.vercel.app/)
+[![Deployment Status](https://img.shields.io/badge/Production-Live-success?style=for-the-badge&logo=vercel)](https://agentic-ai-inky-gamma.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 > **Decisions made in meetings get lost.** Nirgrantha is an autonomous meeting-to-execution AI agent that holds cross-meeting memory, eliminates natural speech slips, prevents contradictory commitments from reaching task trackers, and dispatches verified work directly to trackers and Slack.
@@ -151,6 +151,11 @@ Nirgrantha runs a coordinated multi-agent pipeline of 7 specialized sub-agents:
 
 Nirgrantha is **officially deployed in production on Vercel** as a high-performance, single unified cloud application:
 
+- 🌐 **Live Production App:** [https://agentic-ai-inky-gamma.vercel.app/](https://agentic-ai-inky-gamma.vercel.app/)
+- 📖 **In-Depth Architectural Blog:** [Beyond Transcription: How We Built an Autonomous Meeting-to-Execution Agent](https://agenticai585.blogspot.com/2026/11/beyond-transcription-how-we-built.html)
+- 💻 **Open-Source GitHub Repo:** [https://github.com/arihantmahajan585m/AGENTIC-AI](https://github.com/arihantmahajan585m/AGENTIC-AI)
+
+### Production Details:
 - **Unified 1-App Architecture:** The entire system — Next.js 15 App Router frontend, the 7-subagent autonomous reasoning pipeline, the Gemini 2.5 Flash AI Copilot endpoint (`/api/chat`), and the state engine — runs together within a single deployment on Vercel's global edge network.
 - **Continuous Deployment (CI/CD):** The Vercel project is directly integrated with GitHub (`https://github.com/arihantmahajan585m/AGENTIC-AI.git`). Any push or pull request to the `main` branch automatically triggers an instant zero-downtime production build and release.
 - **Serverless-Resilient Storage:** Nirgrantha natively detects `process.env.VERCEL` and writes mutable store state to `/tmp/kept-store.json` backed by an in-memory fallback. This completely eliminates the `EROFS: read-only file system` errors typical of standard Node apps in serverless runtimes.
