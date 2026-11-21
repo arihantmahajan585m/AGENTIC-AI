@@ -341,8 +341,8 @@ export function KeptApp() {
 
   return (
     <div className="h-screen w-full bg-paper flex flex-col overflow-hidden">
-      {/* Fixed Top Header - Big, Refined & Spacious Format */}
-      <header className="shrink-0 z-40 border-b border-black/10 bg-paper/95 backdrop-blur-md shadow-xs">
+      {/* Fixed Top Header - White Background */}
+      <header className="shrink-0 z-40 border-b border-black/10 bg-white shadow-xs">
         {/* Main Upper Bar: Brand + Quick Actions */}
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3.5 md:px-6">
           {/* Left: Big Brand & Subtitle */}
@@ -419,7 +419,7 @@ export function KeptApp() {
         </div>
 
         {/* Lower Cockpit Bar: Real-time Live Agent Status & 7 Sub-Agents Pipeline */}
-        <div className="border-t border-black/5 bg-[#f0eae0]/70 px-4 py-2 md:px-6">
+        <div className="border-t border-black/5 bg-white px-4 py-2 md:px-6">
           <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-2.5 text-xs">
             {/* Live Agent Working Status Banner */}
             <div className={`flex items-center gap-2.5 rounded-full border px-3.5 py-1 text-xs font-medium ${activeAgentInfo.color} shadow-xs`}>
@@ -739,8 +739,8 @@ export function KeptApp() {
         </main>
       </div>
 
-      {/* Fixed Bottom Footer */}
-      <footer className="shrink-0 z-40 border-t border-black/10 bg-paper/95 backdrop-blur-md px-4 py-2.5 md:px-6 shadow-xs">
+      {/* Fixed Bottom Footer - White Background */}
+      <footer className="shrink-0 z-40 border-t border-black/10 bg-white px-4 py-2.5 md:px-6 shadow-xs">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between text-xs text-mute">
           {/* Left: Memory & In-Force Ledger status */}
           <div className="flex items-center gap-2">
