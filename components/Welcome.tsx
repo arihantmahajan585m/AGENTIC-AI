@@ -77,30 +77,42 @@ const WORKFLOW = [
 
 const TERMS = [
   {
-    title: "What this is",
-    body: "Nirgrantha is a meetings-to-execution prototype. It reads a transcript, extracts decisions, owners, and deadlines, checks them against decisions already in memory, and stops before anything is posted. It is a working demo, not a production service.",
+    title: "System Scope & Prototype Notice",
+    body: "Nirgrantha is an autonomous meeting-to-execution AI prototype engineered for Track 03 (Product Space Agentic AI Hackathon). It repairs spoken speech, extracts commitments, reconciles against persistent cross-meeting memory, and halts at a human governance checkpoint prior to dispatching work.",
   },
   {
-    title: "You decide what gets posted",
-    body: "Tasks, reminders, and webhook deliveries stay unposted until you resolve every conflict and choose to post. A suggestion on screen is not an instruction to your team.",
+    title: "Human Governance & Final Authority",
+    body: "You maintain absolute authority over task execution. Tasks, webhooks, Slack dispatches, and deadline reminders are held in an uncommitted quarantine until you resolve detected conflicts and click Approve/Post. AI-generated actions are proposals, not unilateral commands.",
   },
   {
-    title: "Meetings stay on this machine",
-    body: "Transcripts you paste or dictate, and the decisions Nirgrantha remembers, are stored locally for this demo. Do not paste a confidential customer call unless you are comfortable with that local record.",
+    title: "Local Privacy & Storage Boundary",
+    body: "Meeting transcripts, speaker turns, and memory ledgers are stored locally in browser storage and local memory for this prototype. Never input confidential enterprise or restricted customer PII without explicit institutional authorization.",
   },
   {
-    title: "Voice Integration",
-    body: "If you use Speak, your browser’s speech recognition handles the audio. If you dictate with Wispr Flow and paste the result, Wispr Flow’s own terms apply to that step.",
+    title: "Cross-Meeting Memory Persistence",
+    body: "The agent ledger keeps prior locked decisions active (launch dates, budgets, technical stacks) until explicitly superseded or marked as scoped exceptions by human intervention.",
   },
   {
-    title: "Demo Personas",
-    body: "Priya, Arjun, Meera, Kabir, and Anika are a fictional launch team. Reset demo restores that sample and clears any custom meetings.",
+    title: "Safety Brake on Deadline Reminders",
+    body: "The safety brake automatically suppresses outward reminders for any task whose governing decision is currently contested, preventing automated drift.",
+  },
+  {
+    title: "Voice Integration & Dictation",
+    body: "Voice dictation via browser Web Speech API runs on client capabilities. Third-party dictation tools like Wispr Flow operate under their respective privacy policies.",
+  },
+  {
+    title: "Model Limitations & Non-Warranty",
+    body: "While powered by Google Gemini and deterministic validation algorithms, AI outputs may contain occasional inaccuracies. The platform is provided 'as-is' for demonstration and evaluation purposes.",
+  },
+  {
+    title: "Demo Personas & State Reset",
+    body: "Priya, Arjun, Meera, Kabir, and Anika represent a fictional launch squad. The 'Reset demo state' button purges in-flight sessions and restores standard hackathon fixtures.",
   },
 ];
 
 export function Welcome({ onEnter }: { onEnter: () => void }) {
   const [agreed, setAgreed] = useState(true);
-  const [showTerms, setShowTerms] = useState(false);
+  const [showTerms, setShowTerms] = useState(true);
 
   return (
     <div className="mx-auto min-h-screen max-w-[1180px] px-4 py-8 md:px-8 md:py-12">
@@ -199,24 +211,35 @@ export function Welcome({ onEnter }: { onEnter: () => void }) {
 
       {/* Terms Accordion & Enter Action */}
       <section className="mx-auto mt-16 max-w-2xl rounded-3xl border border-black/10 bg-panel p-6 shadow-sm">
-        <button
-          type="button"
-          onClick={() => setShowTerms(!showTerms)}
-          className="flex w-full items-center justify-between text-sm font-medium text-ink"
-        >
-          <span>Terms & Conditions</span>
-          <span className="text-mute">{showTerms ? "▲ Collapse" : "▼ Read terms"}</span>
-        </button>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-ink text-sm">Terms & Conditions</span>
+            <span className="rounded-full bg-black/5 px-2 py-0.5 text-[10px] font-medium text-mute">
+              Scroll to review (8 clauses)
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowTerms(!showTerms)}
+            className="text-xs font-medium text-brass hover:underline"
+          >
+            {showTerms ? "▲ Collapse" : "▼ Expand terms"}
+          </button>
+        </div>
 
         {showTerms && (
-          <ol className="mt-4 space-y-3 border-t border-black/10 pt-4 text-xs text-mute">
-            {TERMS.map((term, index) => (
-              <li key={term.title}>
-                <span className="font-semibold text-ink">{index + 1}. {term.title}: </span>
-                <span>{term.body}</span>
-              </li>
-            ))}
-          </ol>
+          <div className="mt-4 rounded-2xl border border-black/10 bg-[#faf8f5] p-3 shadow-inner">
+            <div className="max-h-48 overflow-y-auto pr-3 terms-scrollbar">
+              <ol className="space-y-3 text-xs text-mute">
+                {TERMS.map((term, index) => (
+                  <li key={term.title} className="leading-relaxed">
+                    <span className="font-semibold text-ink">{index + 1}. {term.title}: </span>
+                    <span>{term.body}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
         )}
 
         <div className="mt-6 flex flex-col items-center gap-3">

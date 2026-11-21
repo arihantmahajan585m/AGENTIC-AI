@@ -41,6 +41,31 @@ textarea:focus, input:focus, select:focus {
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: rgba(28, 22, 18, 0.22); border-radius: 99px; }
 
+/* Dedicated smooth scrollbar for Terms & Conditions */
+.terms-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #b5ada2 #ece7de;
+}
+
+.terms-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terms-scrollbar::-webkit-scrollbar-track {
+  background: #ece7de;
+  border-radius: 9999px;
+  margin: 2px 0;
+}
+
+.terms-scrollbar::-webkit-scrollbar-thumb {
+  background: #b5ada2;
+  border-radius: 9999px;
+}
+
+.terms-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #968e82;
+}
+
 .ledger {
   background-image: linear-gradient(rgba(28, 22, 18, 0.06) 1px, transparent 1px);
   background-size: 100% 42px;
